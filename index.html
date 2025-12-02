@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Haven | Premium Hotel Experience</title>
+    <meta name="description" content="Experience the pinnacle of luxury at Luxe Haven. Book your stay for an unforgettable experience.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Luxe Haven</a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#rooms" class="nav-link">Rooms</a></li>
+                    <li><a href="#amenities" class="nav-link">Amenities</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-buttons">
+                <button class="btn btn-outline nav-btn" onclick="openModal()">Book Now</button>
+                <button class="btn btn-primary nav-btn" onclick="openSignupModal()">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-bg">
+                <video autoplay muted loop playsinline poster="hero.png" id="hero-video">
+                    <source src="hero.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay"></div>
+            </div>
+            <div class="hero-content container">
+                <h1 class="hero-title fade-in-up">Experience <span class="accent">Unmatched</span> Luxury</h1>
+                <p class="hero-subtitle fade-in-up delay-1">Where elegance meets comfort in the heart of the city.</p>
+                
+                <div class="booking-bar fade-in-up delay-2">
+                    <form class="booking-form" onsubmit="event.preventDefault(); openModal();">
+                        <div class="booking-input-group">
+                            <label>Check In</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="booking-input-group">
+                            <label>Check Out</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                        <div class="booking-input-group">
+                            <label>Guests</label>
+                            <select id="guests">
+                                <option>1 Guest</option>
+                                <option>2 Guests</option>
+                                <option>3 Guests</option>
+                                <option>4+ Guests</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary booking-btn">Check Availability</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="rooms" class="section rooms">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Our Suites</h2>
+                    <p class="section-subtitle">Designed for your ultimate comfort</p>
+                </div>
+                <div class="rooms-grid" id="rooms-grid">
+                    <!-- Rooms injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="amenities" class="section amenities">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">World-Class Amenities</h2>
+                    <p class="section-subtitle">Everything you need for a perfect stay</p>
+                </div>
+                <div class="amenities-grid">
+                    <div class="amenity-item fade-in-up">
+                        <div class="amenity-icon">🏊</div>
+                        <h3>Infinity Pool</h3>
+                        <p>Relax in our temperature-controlled rooftop pool with stunning views.</p>
+                    </div>
+                    <div class="amenity-item fade-in-up delay-1">
+                        <div class="amenity-icon">🍽️</div>
+                        <h3>Fine Dining</h3>
+                        <p>Savor exquisite culinary creations at our award-winning restaurant.</p>
+                    </div>
+                    <div class="amenity-item fade-in-up delay-2">
+                        <div class="amenity-icon">💆</div>
+                        <h3>Luxury Spa</h3>
+                        <p>Rejuvenate your body and mind with our signature spa treatments.</p>
+                    </div>
+                    <div class="amenity-item fade-in-up delay-3">
+                        <div class="amenity-icon">🏋️</div>
+                        <h3>Fitness Center</h3>
+                        <p>State-of-the-art equipment available 24/7 for your workout routine.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h2 class="section-title">Contact Us</h2>
+                        <p class="contact-desc">Ready to book your stay? Have a question? Reach out to us.</p>
+                        <ul class="contact-list">
+                            <li><strong>Address:</strong> 123 Luxury Blvd, Metropolis, NY 10001</li>
+                            <li><strong>Phone:</strong> <span id="contact-phone">+1 (555) 123-4567</span></li>
+                            <li><strong>Email:</strong> <span id="contact-email">reservations@luxehaven.com</span></li>
+                        </ul>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.3!2d-74.0059!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuMiJX!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo footer-logo">Luxe Haven</a>
+                    <p>Redefining luxury hospitality since 2024.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#rooms">Rooms</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Luxe Haven Hotel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Complete Your Reservation</h2>
+                <p>Best rates guaranteed when booking direct.</p>
+            </div>
+            <div class="modal-body">
+                <form id="final-booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="booking-fname" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="booking-lname" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="booking-email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Room Type</label>
+                        <select id="modal-room-type">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Special Requests</label>
+                        <textarea id="booking-requests" rows="3" placeholder="Any special requirements?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Confirm Booking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSignupModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Create Your Account</h2>
+                <p>Join Luxe Haven for exclusive benefits and offers.</p>
+            </div>
+            <div class="modal-body">
+                <form id="signup-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="signup-fname" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="signup-lname" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="signup-email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a secure password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="signup-phone" placeholder="+1 (555) 123-4567">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="storage.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

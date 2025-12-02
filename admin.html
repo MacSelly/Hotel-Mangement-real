@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Haven | Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">Luxe Haven <span class="badge">Admin</span></div>
+            <nav class="admin-nav">
+                <ul>
+                    <li class="active" data-tab="dashboard">Dashboard</li>
+                    <li data-tab="rooms">Room Management</li>
+                    <li data-tab="bookings">Bookings</li>
+                    <li data-tab="settings">Site Settings</li>
+                    <li data-tab="amenities">Amenities</li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="btn-back">← Back to Website</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <section id="dashboard" class="tab-content active">
+                <header class="content-header">
+                    <h1>Dashboard Overview</h1>
+                </header>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Bookings</h3>
+                        <p class="stat-number" id="total-bookings">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Rooms</h3>
+                        <p class="stat-number" id="active-rooms">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Revenue (Est.)</h3>
+                        <p class="stat-number" id="total-revenue">$0</p>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Recent Bookings</h2>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Guest</th>
+                                <th>Room</th>
+                                <th>Dates</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-bookings-table">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Rooms Tab -->
+            <section id="rooms" class="tab-content">
+                <header class="content-header">
+                    <h1>Room Management</h1>
+                    <button class="btn-primary" onclick="openRoomModal()">+ Add New Room</button>
+                </header>
+                <div class="rooms-list" id="rooms-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Bookings Tab -->
+            <section id="bookings" class="tab-content">
+                <header class="content-header">
+                    <h1>All Bookings</h1>
+                </header>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date Booked</th>
+                            <th>Guest Name</th>
+                            <th>Email</th>
+                            <th>Room</th>
+                            <th>Check-In/Out</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="all-bookings-table">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Settings Tab -->
+            <section id="settings" class="tab-content">
+                <header class="content-header">
+                    <h1>Site Settings</h1>
+                </header>
+                <form id="settings-form" class="settings-form">
+                    <h3>Hero Section</h3>
+                    <div class="form-group">
+                        <label>Hero Title (HTML allowed)</label>
+                        <input type="text" id="setting-hero-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hero Subtitle</label>
+                        <input type="text" id="setting-hero-subtitle" required>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Contact Information</h3>
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input type="email" id="setting-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Phone</label>
+                        <input type="text" id="setting-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" id="setting-address" placeholder="123 Luxury Blvd, Metropolis, NY 10001">
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Footer</h3>
+                    <div class="form-group">
+                        <label>Footer Tagline</label>
+                        <input type="text" id="setting-footer-tagline"
+                            placeholder="Redefining luxury hospitality since 2024.">
+                    </div>
+
+                    <button type="submit" class="btn-primary">Save Settings</button>
+                </form>
+            </section>
+
+            <!-- Amenities Tab -->
+            <section id="amenities" class="tab-content">
+                <header class="content-header">
+                    <h1>Amenities Management</h1>
+                    <button class="btn-primary" onclick="openAmenityModal()">+ Add Amenity</button>
+                </header>
+                <div class="amenities-list" id="amenities-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Room Modal -->
+    <div id="room-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeRoomModal()">&times;</span>
+            <h2 id="room-modal-title">Add Room</h2>
+            <form id="room-form">
+                <input type="hidden" id="room-id">
+                <div class="form-group">
+                    <label>Room Name</label>
+                    <input type="text" id="room-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="room-desc" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price ($)</label>
+                        <input type="number" id="room-price" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Capacity</label>
+                        <input type="number" id="room-capacity" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Size (e.g. 45m²)</label>
+                    <input type="text" id="room-size" required>
+                </div>
+                <div class="form-group">
+                    <label>Room Image</label>
+                    <input type="file" id="room-image-file" accept="image/*">
+                    <small style="color: #888; display: block; margin-top: 5px;">Or enter image URL/filename:</small>
+                    <input type="text" id="room-image" value="room.png" placeholder="room.png or https://...">
+                    <div id="image-preview" style="margin-top: 10px; max-width: 200px;">
+                        <!-- Image preview will appear here -->
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary full-width">Save Room</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Amenity Modal -->
+    <div id="amenity-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAmenityModal()">&times;</span>
+            <h2 id="amenity-modal-title">Add Amenity</h2>
+            <form id="amenity-form">
+                <input type="hidden" id="amenity-id">
+                <div class="form-group">
+                    <label>Amenity Name</label>
+                    <input type="text" id="amenity-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="amenity-desc" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Icon (Emoji)</label>
+                    <input type="text" id="amenity-icon" placeholder="🏊" maxlength="2">
+                    <small style="color: #888; display: block; margin-top: 5px;">Use an emoji like 🏊 🍽️ 💆 🏋️</small>
+                </div>
+                <button type="submit" class="btn-primary full-width">Save Amenity</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="storage.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
